@@ -37,6 +37,7 @@ console.log(isPalindrom('Лёша на полке клопа нашёл '));
 
 const extractNumber = (str) => {
   let newString = '';
+  str = str.toString();
   for (let i = 0; i < str.length; i++) {
     newString += !Number.isNaN(parseInt(str[i], 10)) ? parseInt(str[i], 10) : '';
   }

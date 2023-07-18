@@ -24,22 +24,45 @@ const getUserNames = (arr) => {
   for (let i = 0; i <= users.length - 1; i++) {
     if (arr[i].isActive) {
       names.push(arr[i].name);
-    };
+    }
 
   }
   return names;
 };
 
-const getUserNames1 = (arr) => arr.map((user) => ({ id: user.id, alias: user.name }));
+let jsName = prompt('Какое официальное назвагние JS?', '');
 
-const getActiveUsers = (arr) => arr
-  .filter((item) => item.isActive)
-  .map((activeUser) => activeUser.name);
+if (jsName == 'ECMAScript') {
+  alert('Верно');
+} else {
+  alert('Не знаете? ECMAScript');
+}
 
-const sortByAge = (arr) => arr.sort((item1, item2) => item1.age > item2.age ? 1 : -1)
-  .map((user) => `${ user.name}: ${user.age}`);
+let value = prompt('Какое число?', 0);
 
-console.log(sortByAge(users))
+if (value > 0) {
+  alert('1')
+} else if (value < 0) {
+  alert ('-1')
+} else {
+  alert('0')
+}
 
-const name = prompt('what is your name?', '');
-alert (name);
+result = (a + b < 4) ? 'malo' : 'mnogo';
+
+let message = (login == 'sotrudink') ? 'privet' :
+  (login == 'director') ? 'zdravstvuite' :
+  (login == '') ? 'net logina' :
+  '';
+
+let message;
+
+if (login == 'sotrudnik') {
+  message = 'privet';
+} else if (login == 'director') {
+  message = 'zdravstuvite';
+} else if (login == '') {
+  message = 'net logina';
+} else {
+  message = '';
+}
