@@ -7,6 +7,7 @@ const renderThumbnail = (pictures) => {
     console.log(element);
     const pictureElement = pictureTemplate.cloneNode(true);
     pictureElement.querySelector('.picture__img').src = element.url;
+    pictureElement.querySelector('.picture__img').alt = element.description;
     pictureElement.querySelector('.picture__comments').textContent = element.comments.length;
     pictureElement.querySelector('.picture__likes').textContent = element.likes;
     pictureFragment.append(pictureElement);
