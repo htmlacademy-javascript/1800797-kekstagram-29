@@ -1,7 +1,7 @@
 const cardContainer = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = document.querySelector('.big-picture__cancel');
-const bigPictureImage = bigPicture.querySelector('.pig-picture__img img');
+const bigPictureImage = bigPicture.querySelector('.big-picture__img img');
 const bigPictureLikes = bigPicture.querySelector('.likes-count');
 const bigPictureTitle = bigPicture.querySelector('.social__caption');
 const bigPictureComments = bigPicture.querySelector('.comments-count');
@@ -15,7 +15,7 @@ const renderComment = (comment) => {
   return commentElement;
 };
 
-const renderComments = () => {
+const renderComments = (comments) => {
   const fragment = document.createDocumentFragment();
   comments.forEach((item) => {
     fragment.append(renderComment(item));
@@ -38,7 +38,7 @@ const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
 };
 
-closeButton.addEventListener ('click', (evt) => {
+closeButton.addEventListener('click', (evt) => {
   closeBigPicture();
 });
 

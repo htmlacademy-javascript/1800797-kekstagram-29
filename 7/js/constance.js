@@ -1,7 +1,7 @@
 const PHOTOS = 25;
 
 const MIN_LIKES = 0;
-const MAX_LIKES = 100000;
+const MAX_LIKES = 1000;
 
 const MIN_COMMENTS = 0;
 const MAX_COMMENTS = 10;
