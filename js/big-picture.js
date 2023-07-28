@@ -7,7 +7,7 @@ const bigPictureImage = bigPicture.querySelector('.big-picture__img img');
 const bigPictureLikes = bigPicture.querySelector('.likes-count');
 const bigPictureTitle = bigPicture.querySelector('.social__caption');
 const bigPictureComments = bigPicture.querySelector('.comments-count');
-const bigPictureCommentsCount = bigPicture.querySelector('.social__comments-count');
+const bigPictureCommentsCount = bigPicture.querySelector('.social__comment-count');
 const bigPictureCommentItem = bigPicture.querySelector('.social__comment');
 const bigPictureCommentContainer = bigPicture.querySelector('.social__comments');
 const bigPictureCommentField = bigPicture.querySelector('.social__footer-text');
@@ -20,11 +20,13 @@ let commentVolume = 0;
 const renderButtonLoader = () => {
   if (!commentsList.length) {
     bigPictureCommentLoader.classList.add('hidden');
+  } else {
+    bigPictureCommentLoader.classList.remove('hidden');
   }
 };
 
 const renderStatistic = () => {
-  bigPictureCommentsCount.innerHTML = `${comments.volume - commentsList.length} из <span class="comments-count">${commentVolume}</span> комментариев`
+  bigPictureCommentsCount.innerHTML = `${commentVolume - commentsList.length} из <span class="comments-count">${commentVolume}</span> комментариев`
 };
 
 const renderComment = (comment) => {
@@ -48,18 +50,20 @@ const openBigPicture = (photo) => {
   commentVolume = photo.comments.length;
   bigPictureCommentContainer.innerHTML = '';
   bigPicture.classList.remove('hidden');
+  document.body.classList.add('modal-open');
   bigPictureImage.src = photo.url;
   bigPictureLikes.textContent = photo.likes;
   bigPictureTitle.textContent = photo.description;
 
   commentsList.length = 0;
   commentsList.push(...photo.comments.slice());
+  commentVolume = photo.comments.length;
 
-  photo.comments.length === 0
-    ? bigPictureCommentField.placeholder = 'Будьте первым комментатором'
-    : bigPictureCommentField.placeholder = 'Ваш комментарий'
+  bigPictureCommentField.placeholder = photo.comments.length === 0
+    ? 'Будьте первым комментатором'
+    : 'Ваш комментарий';
   renderComments(photo.comments);
-  console.log(photo);
+  document.addEventListener('keydown', onClickEsc);
 };
 
 bigPictureCommentLoader.addEventListener('click', (evt) => {
@@ -69,10 +73,18 @@ bigPictureCommentLoader.addEventListener('click', (evt) => {
 
 const closeBigPicture = () => {
   bigPicture.classList.add('hidden');
+  document.removeEventListener('keydown', onClickEsc);
+  document.body.classList.remove('modal-open');
 };
 
 closeButton.addEventListener('click', (evt) => {
   closeBigPicture();
 });
+
+function onClickEsc(evt) {
+  if (evt.key === 'Escape') {
+    closeBigPicture();
+  }
+}
 
 export { openBigPicture };
