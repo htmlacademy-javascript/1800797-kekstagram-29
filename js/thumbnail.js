@@ -1,4 +1,4 @@
-import { openBigPicture  } from "./big-picture.js";
+import { openBigPicture } from "./big-picture.js";
 
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureContainer = document.querySelector('.pictures');
@@ -6,7 +6,7 @@ const pictureFragment = document.createDocumentFragment();
 
 const renderThumbnail = (pictures) => {
   pictures.forEach((element) => {
-    console.log(element);
+    // console.log(element);
     const pictureElement = pictureTemplate.cloneNode(true);
     pictureElement.dataset.id = element.id;
     pictureElement.querySelector('.picture__img').src = element.url;
