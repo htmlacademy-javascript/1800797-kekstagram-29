@@ -1,3 +1,6 @@
+import { resetScale } from './scale.js';
+import { resetEffects } from './effects.js';
+
 const uploadElement = document.querySelector('.img-upload__input'); //uploadcontrol
 const modalUpload = document.querySelector('.img-upload__overlay'); //uploadmodal
 const modalUploadClose = document.querySelector('.img-upload__cancel'); // uploadmodalcancel
@@ -17,6 +20,8 @@ const showModal = () => {
   modalUpload.classList.remove('hidden');
   document.body.classList.add('modal-open');
   renderUploadPhoto();
+  resetScale();
+  resetEffects();
 };
 
 const closeModal = () => {
@@ -25,9 +30,12 @@ const closeModal = () => {
   uploadForm.reset();
 };
 
+uploadForm.addEventListener('upload', (evt) => {
+  evt.preventDefault();
+});
+
 uploadElement.addEventListener('change', () => {
   showModal();
-  renderUploadPhoto();
 });
 
 modalUploadClose.addEventListener('click', () => {
