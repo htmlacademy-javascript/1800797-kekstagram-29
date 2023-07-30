@@ -1,5 +1,7 @@
-const form = document.querySelector('.img-upload__form');
-const hashtag = document.querySelector('.text__hashtags');
+import { checkLength } from './util.js';
+
+const form = document.querySelector('.img-upload__form'); //uploadform
+const hashtag = document.querySelector('.text__hashtags'); //hashtagField
 const description = document.querySelector('.text__description');
 
 
@@ -10,11 +12,13 @@ const pristine = new Pristine(form, {
   errorTextClass: 'form__error',
 },
 false);
-validateDescription = (value) => value.length <= 10;
+
+const validateDescription = (value) => checkLength(value, 20);
 
 
 pristine.addValidator(
   description,
   validateDescription,
-  'Длина описания не должна превышать 10 символов.'
+  'Длина описания не должна превышать 20 символов.'
 );
+

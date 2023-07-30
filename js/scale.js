@@ -9,8 +9,6 @@ const imagePreview = document.querySelector('.img-upload__preview img');
 const minusInput = document.querySelector('.scale__control--smaller');
 const plusInput = document.querySelector('.scale__control--bigger');
 
-
-
 let scale;
 
 const renderScaleInput = () => {
