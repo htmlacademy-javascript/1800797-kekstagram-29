@@ -1,6 +1,11 @@
+import { postData } from './api.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effects.js';
 import { validateForm } from './validation.js';
+import {
+  showSuccessModal,
+  showErrorModal
+} from './popups.js';
 
 const uploadElement = document.querySelector('.img-upload__input'); //uploadcontrol
 const modalUpload = document.querySelector('.img-upload__overlay'); //uploadmodal
@@ -39,7 +44,21 @@ uploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
   if (validateForm()) {
-    closeModal();
+    postData(new FormData(evt.target))
+      .then((response) => {
+        if (response.ok) {
+          closeModal();
+          showSuccessModal();
+        } else {
+        // Показать окно неуспеха
+          showErrorModal();
+        }
+      })
+      .catch(() => {
+      // Показать окно неуспеха
+        showErrorModal();
+      });
+
   }
 });
 

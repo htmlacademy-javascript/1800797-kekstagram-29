@@ -25,6 +25,12 @@ const MAX_HASHTAG_VOLUME = 5;
 
 const HASHTAG_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 
+const GET_DATA_URL = 'https://29.javascript.pages.academy/kekstagram/data';
+
+const POST_DATA_URL = 'https://29.javascript.pages.academy/kekstagram';
+
+const ALERT_SHOW_TIME = 5000;
+
 const DESCRIPTIONS = [
   'Утро',
   'Вечер',
@@ -67,5 +73,8 @@ export {
   MAX_SCALE,
   MAX_DESCRIPTION_LENGTH,
   MAX_HASHTAG_VOLUME,
-  HASHTAG_SYMBOLS
+  HASHTAG_SYMBOLS,
+  GET_DATA_URL,
+  POST_DATA_URL,
+  ALERT_SHOW_TIME
 };

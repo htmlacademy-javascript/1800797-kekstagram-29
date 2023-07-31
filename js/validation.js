@@ -41,7 +41,7 @@ pristine.addValidator(
 
 const validateHashtag = (value) => {
   const tags = value.replace(/ +/g, ' ').trim().split(' ');
-  return !tags.some((tag) => !HASHTAG_SYMBOLS.test(tag));
+  return !value.length ? true : !tags.some((tag) => !HASHTAG_SYMBOLS.test(tag));
 };
 
 pristine.addValidator(
