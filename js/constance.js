@@ -31,6 +31,11 @@ const POST_DATA_URL = 'https://29.javascript.pages.academy/kekstagram';
 
 const ALERT_SHOW_TIME = 5000;
 
+const submitButtonText = {
+  IDLE: 'Опубликовать',
+  SUBMITING: 'Публикую...'
+};
+
 const DESCRIPTIONS = [
   'Утро',
   'Вечер',
@@ -76,5 +81,6 @@ export {
   HASHTAG_SYMBOLS,
   GET_DATA_URL,
   POST_DATA_URL,
-  ALERT_SHOW_TIME
+  ALERT_SHOW_TIME,
+  submitButtonText
 };
