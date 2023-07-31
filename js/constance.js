@@ -19,6 +19,12 @@ const MIN_SCALE = 25;
 
 const MAX_SCALE = 100;
 
+const MAX_DESCRIPTION_LENGTH = 140;
+
+const MAX_HASHTAG_VOLUME = 5;
+
+const HASHTAG_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
+
 const DESCRIPTIONS = [
   'Утро',
   'Вечер',
@@ -58,5 +64,8 @@ export {
   COMMENTS_DOSE,
   STEP_SCALE,
   MIN_SCALE,
-  MAX_SCALE
+  MAX_SCALE,
+  MAX_DESCRIPTION_LENGTH,
+  MAX_HASHTAG_VOLUME,
+  HASHTAG_SYMBOLS
 };
