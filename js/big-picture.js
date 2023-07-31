@@ -1,4 +1,4 @@
-import { COMMENTS_DOSE } from "./constance.js";
+import { COMMENTS_DOSE } from './constance.js';
 
 const cardContainer = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
@@ -26,7 +26,7 @@ const renderButtonLoader = () => {
 };
 
 const renderStatistic = () => {
-  bigPictureCommentsCount.innerHTML = `${commentVolume - commentsList.length} из <span class="comments-count">${commentVolume}</span> комментариев`
+  bigPictureCommentsCount.innerHTML = `${commentVolume - commentsList.length} из <span class="comments-count">${commentVolume}</span> комментариев`;
 };
 
 const renderComment = (comment) => {

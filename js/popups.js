@@ -20,14 +20,29 @@ const showSuccessModal = () => {
   document.addEventListener('keydown', onEscSuccess);
 };
 
+const closeErrorModal = () => {
+  document.querySelector('.error').remove();
+  document.removeEventListener('keydown', onEscSuccess);
+};
+
 const showErrorModal = () => {
   const errorElement = errorTemplate.cloneNode(true);
   document.body.append(errorElement);
+  document.querySelector('.error__button').addEventListener('click', () => {
+    closeErrorModal();
+  });
+  document.querySelector('.error').addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('error')) {
+      closeErrorModal();
+    }
+  });
+  document.addEventListener('keydown', onEscSuccess);
 };
 
 function onEscSuccess(evt) {
   if (evt.key === 'Escape') {
     closeSuccessModal();
+    closeErrorModal(); //
   }
 }
 

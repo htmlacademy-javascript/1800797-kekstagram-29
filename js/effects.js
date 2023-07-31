@@ -103,7 +103,6 @@ const resetEffects = () => {
 };
 
 radiosList.addEventListener('change', (evt) => {
-  console.log(evt.target);
   if (evt.target.name === 'effect') {
     if (evt.target.value === 'none') {
       imagePreview.style.filter = '';
