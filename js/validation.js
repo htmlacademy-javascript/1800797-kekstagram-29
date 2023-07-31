@@ -34,7 +34,9 @@ const validateHashtagVolume = (value) => value.replace(/ +/g, ' ').trim().split(
 pristine.addValidator(
   hashtag,
   validateHashtagVolume,
-  `Длина описания не должна превышать ${MAX_HASHTAG_VOLUME} символов.`
+  `Количество хеш-тегов не должно превышать ${MAX_HASHTAG_VOLUME}.`,
+  1,
+  true
 );
 
 const validateHashtag = (value) => {
@@ -49,7 +51,9 @@ pristine.addValidator(
   строка после решётки должна состоять из букв и чисел и не может содержать пробелы,
   спецсимволы (#, @, $ и т. п.), символы пунктуации (тире, дефис, запятая и т. п.), эмодзи и т. д.;
   хеш-тег не может состоять только из одной решётки;
-  максимальная длина одного хэш-тега 20 символов, включая решётку;`
+  максимальная длина одного хэш-тега 20 символов, включая решётку;`,
+  1,
+  true
 );
 
 const validateUniqueHashtag = (value) => {
@@ -61,7 +65,9 @@ const validateUniqueHashtag = (value) => {
 pristine.addValidator(
   hashtag,
   validateUniqueHashtag,
-  'Хештеги не должны повторяться.'
+  'Хештеги не должны повторяться.',
+  1,
+  true
 );
 
 const validateForm = () => pristine.validate();
