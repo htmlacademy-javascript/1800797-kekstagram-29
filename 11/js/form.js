@@ -6,6 +6,7 @@ import {
   showSuccessModal,
   showErrorModal
 } from './popups.js';
+import { submitButtonText } from './constance.js';
 
 const uploadElement = document.querySelector('.img-upload__input'); //uploadcontrol
 const modalUpload = document.querySelector('.img-upload__overlay'); //uploadmodal
@@ -13,6 +14,7 @@ const modalUploadClose = document.querySelector('.img-upload__cancel'); // uploa
 const uploadModalEffectsControlIcons = modalUpload.querySelectorAll('.effects__preview');
 const modalImagePreview = document.querySelector('.img-upload__preview img');
 const uploadForm = document.querySelector('.img-upload__form');
+const submitButton = document.querySelector('.img-upload__submit');
 
 const renderUploadPhoto = () => {
   const fileImage = uploadElement.files[0];
@@ -40,10 +42,21 @@ const closeModal = () => {
   modalUpload.removeEventListener('click', onClickOutside);
 };
 
+const disableSubmitButton = () => {
+  submitButton.textContent = submitButtonText.SUBMITING;
+  submitButton.disabled = true;
+};
+
+const enableSubmitButton = () => {
+  submitButton.textContent = submitButtonText.IDLE;
+  submitButton.disabled = false;
+};
+
 uploadForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
   if (validateForm()) {
+    disableSubmitButton();
     postData(new FormData(evt.target))
       .then((response) => {
         if (response.ok) {
@@ -57,8 +70,10 @@ uploadForm.addEventListener('submit', (evt) => {
       .catch(() => {
       // Показать окно неуспеха
         showErrorModal();
+      })
+      .finally(() => {
+        enableSubmitButton();
       });
-
   }
 });
 
