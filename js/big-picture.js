@@ -1,12 +1,10 @@
-import { COMMENTS_DOSE } from "./constance.js";
+import { COMMENTS_DOSE } from './constance.js';
 
-const cardContainer = document.querySelector('.pictures');
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = document.querySelector('.big-picture__cancel');
 const bigPictureImage = bigPicture.querySelector('.big-picture__img img');
 const bigPictureLikes = bigPicture.querySelector('.likes-count');
 const bigPictureTitle = bigPicture.querySelector('.social__caption');
-const bigPictureComments = bigPicture.querySelector('.comments-count');
 const bigPictureCommentsCount = bigPicture.querySelector('.social__comment-count');
 const bigPictureCommentItem = bigPicture.querySelector('.social__comment');
 const bigPictureCommentContainer = bigPicture.querySelector('.social__comments');
@@ -26,7 +24,7 @@ const renderButtonLoader = () => {
 };
 
 const renderStatistic = () => {
-  bigPictureCommentsCount.innerHTML = `${commentVolume - commentsList.length} из <span class="comments-count">${commentVolume}</span> комментариев`
+  bigPictureCommentsCount.innerHTML = `${commentVolume - commentsList.length} из <span class="comments-count">${commentVolume}</span> комментариев`;
 };
 
 const renderComment = (comment) => {
@@ -77,7 +75,7 @@ const closeBigPicture = () => {
   document.body.classList.remove('modal-open');
 };
 
-closeButton.addEventListener('click', (evt) => {
+closeButton.addEventListener('click', () => {
   closeBigPicture();
 });
 
