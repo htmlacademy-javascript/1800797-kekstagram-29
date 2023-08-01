@@ -1,52 +1,43 @@
-const successTemplate = document.querySelector('#success').content.querySelector('.success');
-const errorTemplate = document.querySelector('#error').content.querySelector('.error');
+import { onClickEsc } from './form.js';
 
-const closeSuccessModal = () => {
-  document.querySelector('.success').remove();
-  document.removeEventListener('keydown', onEscSuccess);
+const popupTemplates = {
+  success: document.querySelector('#success').content.querySelector('.success'),
+  error: document.querySelector('#error').content.querySelector('.error')
 };
 
-const showSuccessModal = () => {
-  const successElement = successTemplate.cloneNode(true);
-  document.body.append(successElement);
-  document.querySelector('.success__button').addEventListener('click', () => {
-    closeSuccessModal();
-  });
-  document.querySelector('.success').addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('success')) {
-      closeSuccessModal();
-    }
-  });
-  document.addEventListener('keydown', onEscSuccess);
+const closePopup = () => {
+  if (document.querySelector('.popup').classList.contains('error')) {
+    document.addEventListener('keydown', onClickEsc);
+  }
+  document.removeEventListener('keydown', onEscapePopup);
+  document.querySelector('.popup').remove();
 };
 
-const closeErrorModal = () => {
-  document.querySelector('.error').remove();
-  document.removeEventListener('keydown', onEscSuccess);
+const showPopup = (popupType) => {
+  const popupElement = popupTemplates[popupType].cloneNode(true);
+  popupElement.classList.add('popup');
+  popupElement.addEventListener('click', onClickOutside);
+  document.body.append(popupElement);
+  const popupButton = document.querySelector(`.${popupType}__button`);
+  popupButton.addEventListener('click', closePopup);
+  document.addEventListener('keydown', onEscapePopup);
+  if(popupType === 'error') {
+    document.removeEventListener('keydown', onClickEsc);
+  }
 };
 
-const showErrorModal = () => {
-  const errorElement = errorTemplate.cloneNode(true);
-  document.body.append(errorElement);
-  document.querySelector('.error__button').addEventListener('click', () => {
-    closeErrorModal();
-  });
-  document.querySelector('.error').addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('error')) {
-      closeErrorModal();
-    }
-  });
-  document.addEventListener('keydown', onEscSuccess);
-};
-
-function onEscSuccess(evt) {
+function onEscapePopup(evt) {
   if (evt.key === 'Escape') {
-    closeSuccessModal();
-    closeErrorModal(); //
+    closePopup();
+  }
+}
+
+function onClickOutside(evt) {
+  if (evt.target.classList.contains('success') || evt.target.classList.contains('error')) {
+    closePopup();
   }
 }
 
 export {
-  showSuccessModal,
-  showErrorModal
+  showPopup
 };

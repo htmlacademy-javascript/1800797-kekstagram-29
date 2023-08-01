@@ -4,9 +4,19 @@ const pictureTemplate = document.querySelector('#picture').content.querySelector
 const pictureContainer = document.querySelector('.pictures');
 const pictureFragment = document.createDocumentFragment();
 
+const photos = [];
+
+const removePictures = () => {
+  document.querySelectorAll('.picture').forEach((item) => {
+    item.remove();
+  });
+};
+
 const renderThumbnail = (pictures) => {
+  photos.length = 0;
+  photos.push(...pictures.slice());
+  removePictures();
   pictures.forEach((element) => {
-    // console.log(element);
     const pictureElement = pictureTemplate.cloneNode(true);
     pictureElement.dataset.id = element.id;
     pictureElement.querySelector('.picture__img').src = element.url;
@@ -16,14 +26,14 @@ const renderThumbnail = (pictures) => {
     pictureFragment.append(pictureElement);
   });
   pictureContainer.append(pictureFragment);
-
-  pictureContainer.addEventListener('click', (evt) => {
-    if (evt.target.classList.contains('picture__img')) {
-      const id = evt.target.closest('.picture').dataset.id;
-      const picture = pictures.find((item) => item.id === id * 1);
-      openBigPicture(picture);
-    }
-  });
 };
+
+pictureContainer.addEventListener('click', (evt) => {
+  if (evt.target.classList.contains('picture__img')) {
+    const id = evt.target.closest('.picture').dataset.id;
+    const picture = photos.find((item) => item.id === id * 1);
+    openBigPicture(picture);
+  }
+});
 
 export { renderThumbnail };
