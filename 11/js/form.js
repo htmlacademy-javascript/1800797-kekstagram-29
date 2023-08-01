@@ -1,12 +1,12 @@
 import { postData } from './api.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effects.js';
-import { validateForm } from './validation.js';
 import {
-  showSuccessModal,
-  showErrorModal
-} from './popups.js';
-import { submitButtonText } from './constance.js';
+  validateForm,
+  resetValidation
+} from './validation.js';
+import { showPopup } from './popups.js';
+import { SubmitButtonText } from './constance.js';
 
 const uploadElement = document.querySelector('.img-upload__input'); //uploadcontrol
 const modalUpload = document.querySelector('.img-upload__overlay'); //uploadmodal
@@ -40,16 +40,12 @@ const closeModal = () => {
   uploadForm.reset();
   document.removeEventListener('keydown', onClickEsc);
   modalUpload.removeEventListener('click', onClickOutside);
+  resetValidation();
 };
 
-const disableSubmitButton = () => {
-  submitButton.textContent = submitButtonText.SUBMITING;
-  submitButton.disabled = true;
-};
-
-const enableSubmitButton = () => {
-  submitButton.textContent = submitButtonText.IDLE;
-  submitButton.disabled = false;
+const disableSubmitButton = (isDisable = true) => {
+  submitButton.textContent = isDisable ? SubmitButtonText.SUBMITING : SubmitButtonText.IDLE;
+  submitButton.disabled = isDisable;
 };
 
 uploadForm.addEventListener('submit', (evt) => {
@@ -61,18 +57,16 @@ uploadForm.addEventListener('submit', (evt) => {
       .then((response) => {
         if (response.ok) {
           closeModal();
-          showSuccessModal();
+          showPopup('success');
         } else {
-        // Показать окно неуспеха
-          showErrorModal();
+          showPopup('error');
         }
       })
       .catch(() => {
-      // Показать окно неуспеха
-        showErrorModal();
+        showPopup('error');
       })
       .finally(() => {
-        enableSubmitButton();
+        disableSubmitButton(false);
       });
   }
 });
@@ -100,3 +94,5 @@ function onClickOutside(evt) {
     closeModal();
   }
 }
+
+export { onClickEsc };

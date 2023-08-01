@@ -1,4 +1,4 @@
-import { renderThumbnail } from './thumbnail.js';
+import { setFilters } from './filter.js';
 import './form.js';
 import { getData } from './api.js';
 import { showAlert } from './util.js';
@@ -14,7 +14,8 @@ getData()
     }
   })
   .then((data) => {
-    renderThumbnail(data);
+    // renderThumbnail(data);
+    setFilters(data);
   })
   .catch(() => {
     showAlert('Сервер не доступен, что-то пошло не так.');
