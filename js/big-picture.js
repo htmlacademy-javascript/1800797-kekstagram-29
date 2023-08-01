@@ -1,4 +1,5 @@
 import { COMMENTS_DOSE } from './constance.js';
+import { isEscapeKey } from './util.js';
 
 const bigPicture = document.querySelector('.big-picture');
 const closeButton = document.querySelector('.big-picture__cancel');
@@ -80,7 +81,7 @@ closeButton.addEventListener('click', () => {
 });
 
 function onClickEsc(evt) {
-  if (evt.key === 'Escape') {
+  if (isEscapeKey(evt)) {
     closeBigPicture();
   }
 }

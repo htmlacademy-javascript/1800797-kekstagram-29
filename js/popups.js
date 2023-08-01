@@ -1,4 +1,5 @@
 import { onClickEsc } from './form.js';
+import { isEscapeKey } from './util.js';
 
 const popupTemplates = {
   success: document.querySelector('#success').content.querySelector('.success'),
@@ -27,7 +28,7 @@ const showPopup = (popupType) => {
 };
 
 function onEscapePopup(evt) {
-  if (evt.key === 'Escape') {
+  if (isEscapeKey(evt)) {
     closePopup();
   }
 }

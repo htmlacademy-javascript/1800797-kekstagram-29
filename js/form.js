@@ -7,6 +7,7 @@ import {
 } from './validation.js';
 import { showPopup } from './popups.js';
 import { SubmitButtonText } from './constance.js';
+import { isEscapeKey } from './util.js';
 
 const uploadElement = document.querySelector('.img-upload__input'); //uploadcontrol
 const modalUpload = document.querySelector('.img-upload__overlay'); //uploadmodal
@@ -84,7 +85,7 @@ function onClickEsc(evt) {
   if (isFocusedInput) {
     return false;
   }
-  if (evt.key === 'Escape') {
+  if (isEscapeKey(evt)) {
     closeModal();
   }
 }
